@@ -12,7 +12,7 @@ namespace asp_net_core_mvc_example.Controllers
     {
         public IActionResult Index()
         {
-            return RedirectToAction("Spiral", "Matrix", new {area = ""});
+            return RedirectToAction("Index", "PokerHand", new {area = ""});
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
