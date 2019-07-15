@@ -1,11 +1,19 @@
 ﻿using System.Collections.Generic;
 using AspNetCoreMvcExample.Models;
+using AspNetCoreMvcExample.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreMvcExample.Controllers
 {
     public class PokerHandController : Controller
     {
+        private readonly ICardsService<CardModel> _pokerCardsService;
+
+        public PokerHandController(ICardsService<CardModel> pokerCardsService)
+        {
+            _pokerCardsService = pokerCardsService;
+        }
+
         public IActionResult Index()
         {
             var model = new PokerHandModel();
@@ -16,13 +24,8 @@ namespace AspNetCoreMvcExample.Controllers
         public IActionResult DealCards()
         {
             var model = new PokerHandModel();
-            var dealtCards = new List<CardModel>();
-            for (int i = 0; i < 5; i++)
-            {
-                dealtCards.Add(new CardModel(){Suit = "H", Value = "2"});
-            }
-
-            model.Cards = dealtCards;
+            _pokerCardsService.DealCards();
+            model.Cards = _pokerCardsService.DealtCards;
             return View(nameof(Index), model);
         }
     }
