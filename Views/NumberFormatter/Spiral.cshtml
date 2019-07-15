@@ -1,0 +1,20 @@
+﻿@model SpiralNumberFormatterModel
+@{
+    ViewData["Title"] = "Spiral Number Formatter";
+}
+
+<div class="d-flex justify-content-center my-4">
+    <h1>Spiral Number Formatter</h1>
+</div>
+<div class="d-flex justify-content-center mb-4">
+    <form class="form-inline" asp-controller="NumberFormatter" asp-action="Spiral" method="post">
+        <div class="form-group mx-sm-3">
+            <input type="text" class="form-control" name="numberForCalculation" id="numberForCalculation" placeholder="Enter an number">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<div class="d-flex justify-content-center mt-5">
+    <h1>@Model.NumberForCalculation</h1>
+</div>
+
