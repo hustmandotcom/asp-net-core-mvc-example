@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using AspNetCoreMvcExample.Models;
 using Microsoft.AspNetCore.Mvc;
-using asp_net_core_mvc_example.Models;
 
-namespace asp_net_core_mvc_example.Controllers
+namespace AspNetCoreMvcExample.Controllers
 {
     public class HomeController : Controller
     {

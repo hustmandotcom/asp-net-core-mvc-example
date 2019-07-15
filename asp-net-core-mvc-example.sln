@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp-net-core-mvc-example", "asp-net-core-mvc-example.csproj", "{B8141313-7267-4403-A9A4-59176C9739A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp-net-core-mvc-example", "AspNetCoreMvcExample\asp-net-core-mvc-example.csproj", "{69F91B25-4516-4FBF-8690-BFC53BA7040B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{2218071C-D8C9-4F25-883D-6BB81D030562}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B8141313-7267-4403-A9A4-59176C9739A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8141313-7267-4403-A9A4-59176C9739A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8141313-7267-4403-A9A4-59176C9739A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8141313-7267-4403-A9A4-59176C9739A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69F91B25-4516-4FBF-8690-BFC53BA7040B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69F91B25-4516-4FBF-8690-BFC53BA7040B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69F91B25-4516-4FBF-8690-BFC53BA7040B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69F91B25-4516-4FBF-8690-BFC53BA7040B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2218071C-D8C9-4F25-883D-6BB81D030562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2218071C-D8C9-4F25-883D-6BB81D030562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2218071C-D8C9-4F25-883D-6BB81D030562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2218071C-D8C9-4F25-883D-6BB81D030562}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,4 @@
-using System;
-
-namespace asp_net_core_mvc_example.Models
+namespace AspNetCoreMvcExample.Models
 {
     public class ErrorViewModel
     {
