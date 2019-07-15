@@ -6,7 +6,7 @@ using AspNetCoreMvcExample.Models;
 
 namespace AspNetCoreMvcExample.Services
 {
-    public class PokerCardsService : ICardsService<CardModel>
+    public class PokerCardDealingService : ICardDealingService<CardModel>
     {
         private const int NumberOfDealtCards = 5;
         private readonly Random _random = new Random();

@@ -6,23 +6,23 @@ using NUnit.Framework;
 
 namespace AspNetCoreMvcExample.UnitTests
 {
-    public class PokerCardServiceTests
+    public class PokerCardDealingServiceTests
     {
-        private ICardsService<CardModel> _pokerCardsService;
+        private ICardDealingService<CardModel> _pokerCardDealingService;
         [SetUp]
         public void Setup()
         {
-            _pokerCardsService = new PokerCardsService();
+            _pokerCardDealingService = new PokerCardDealingService();
         }
 
         [Test]
         public void DealingCardsGetsFiveCards()
         {
             // act
-            _pokerCardsService.DealCards();
+            _pokerCardDealingService.DealCards();
 
             // assert
-            Assert.That(_pokerCardsService.DealtCards.Count().Equals(5));
+            Assert.That(_pokerCardDealingService.DealtCards.Count().Equals(5));
         }
 
         [Test]
@@ -38,15 +38,15 @@ namespace AspNetCoreMvcExample.UnitTests
             };
 
             // assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => _pokerCardsService.SetCards(cardsArray));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _pokerCardDealingService.SetCards(cardsArray));
         }
 
         [Test]
         public void DealtCardsDoNotContainDuplicates()
         {
             // act
-            _pokerCardsService.DealCards();
-            var duplicateCards = _pokerCardsService.DealtCards.GroupBy(card => card).Where(cards => cards.Count() > 1)
+            _pokerCardDealingService.DealCards();
+            var duplicateCards = _pokerCardDealingService.DealtCards.GroupBy(card => card).Where(cards => cards.Count() > 1)
                 .Select(card => card.Key);
 
             // assert
