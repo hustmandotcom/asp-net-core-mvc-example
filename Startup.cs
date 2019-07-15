@@ -57,6 +57,10 @@ namespace asp_net_core_mvc_example
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "numberFormatter",
+                    template: "{controller=NumberFormatter}/{action=Index}");
             });
         }
     }

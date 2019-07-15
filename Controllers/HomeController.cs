@@ -12,7 +12,7 @@ namespace asp_net_core_mvc_example.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "NumberFormatter");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
