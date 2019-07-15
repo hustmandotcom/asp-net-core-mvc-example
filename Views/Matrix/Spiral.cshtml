@@ -1,4 +1,4 @@
-﻿@model SpiralNumberFormatterModel
+﻿@model SpiralMatrixModel
 @{
     ViewData["Title"] = "Spiral Number Formatter";
 }
@@ -7,7 +7,7 @@
     <h1>Spiral Number Formatter</h1>
 </div>
 <div class="d-flex justify-content-center mb-4">
-    <form class="form-inline" asp-controller="NumberFormatter" asp-action="Spiral" method="post">
+    <form class="form-inline" asp-controller="Matrix" asp-action="Spiral" method="post">
         <div class="form-group mx-sm-3">
             <input type="text" class="form-control" name="numberForCalculation" id="numberForCalculation" placeholder="Enter an number">
         </div>

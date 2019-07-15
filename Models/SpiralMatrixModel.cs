@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace asp_net_core_mvc_example.Models
 {
-    public class SpiralNumberFormatterModel
+    public class SpiralMatrixModel
     {
         public int NumberForCalculation { get; set; }
+        public int[,] Matrix { get; set; }
     }
 }
