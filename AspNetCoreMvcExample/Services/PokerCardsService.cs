@@ -14,16 +14,26 @@ namespace AspNetCoreMvcExample.Services
 
         public void DealCards()
         {
-            var dealtCards = new List<CardModel>();
-            for (var i = 0; i < NumberOfDealtCards; i++)
-            {
-                dealtCards.Add(new CardModel(){Suit = "H", Value = "2"});
-            }
-
-            DealtCards = dealtCards;
+            DealtCards = GetRandomCards(NumberOfDealtCards);
         }
 
-        public CardModel GetRandomCard()
+        private IEnumerable<CardModel> GetRandomCards(int numberOfCards)
+        {
+            var dealtCards = new List<CardModel>();
+            for (var i = 0; i < numberOfCards; i++)
+            {
+                var randomCard = GetRandomCard();
+                while (dealtCards.Contains(randomCard))
+                {
+                    randomCard = GetRandomCard();
+                }
+                dealtCards.Add(randomCard);
+            }
+
+            return dealtCards;
+        }
+
+        private CardModel GetRandomCard()
         {
             return new CardModel()
             {
@@ -31,5 +41,6 @@ namespace AspNetCoreMvcExample.Services
                 Value = _availableValues[_random.Next(0, _availableValues.Length)]
             };
         }
+
     }
 }

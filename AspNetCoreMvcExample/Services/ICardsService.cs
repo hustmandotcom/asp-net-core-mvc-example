@@ -6,6 +6,5 @@ namespace AspNetCoreMvcExample.Services
     {
         IEnumerable<T> DealtCards { get; }
         void DealCards();
-        T GetRandomCard();
     }
 }
