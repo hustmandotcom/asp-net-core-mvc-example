@@ -5,5 +5,6 @@ namespace AspNetCoreMvcExample.Models
     public class PokerHandModel
     {
         public IEnumerable<CardModel> Cards { get; set; } 
+        public string Rank { get; set; }
     }
 }

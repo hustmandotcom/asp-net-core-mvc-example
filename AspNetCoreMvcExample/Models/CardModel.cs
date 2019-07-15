@@ -1,8 +1,18 @@
-﻿namespace AspNetCoreMvcExample.Models
+﻿using System;
+using AspNetCoreMvcExample.Extensions;
+
+namespace AspNetCoreMvcExample.Models
 {
     public class CardModel
     {
-        public string Suit { get; set; }
-        public string Value { get; set; }
+        public Suit Suit { get; set; }
+        public Face Face { get; set; }
+
+        public override string ToString()
+        {
+            var suit = Suit.GetDescription();
+            var face = Face.GetDescription();
+            return $"{face}{suit}";
+        }
     }
 }

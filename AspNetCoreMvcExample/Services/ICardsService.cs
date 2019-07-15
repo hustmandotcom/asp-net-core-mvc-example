@@ -2,9 +2,10 @@
 
 namespace AspNetCoreMvcExample.Services
 {
-    public interface ICardsService<out T>
+    public interface ICardsService<T>
     {
         IEnumerable<T> DealtCards { get; }
         void DealCards();
+        void SetCards(IEnumerable<T> cards);
     }
 }

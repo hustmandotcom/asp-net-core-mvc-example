@@ -6,19 +6,22 @@
 <div class="d-flex justify-content-center my-4">
     <h1>Poker Hand Evaluator</h1>
 </div>
-<div class="d-flex justify-content-center mb-4">
+<div class="d-flex justify-content-center">
     <form class="form-inline" asp-controller="PokerHand" asp-action="DealCards" method="post">
         <button type="submit" class="btn btn-primary">Deal Cards</button>
     </form>
 </div>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center my-4">
     @if (Model.Cards != null)
     {
         @foreach (var card in Model.Cards)
          {
              <div class="dealt-card mx-3">
-                 <h1>@card.Value@card.Suit</h1>
+                 <h1>@card.ToString()</h1>
              </div>
          }
     }
+</div>
+<div class="d-flex justify-content-center">
+    <h1>Poker Hand Evaluator</h1>
 </div>

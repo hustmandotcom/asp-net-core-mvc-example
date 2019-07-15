@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using AspNetCoreMvcExample.Extensions;
 using AspNetCoreMvcExample.Models;
 
 namespace AspNetCoreMvcExample.Services
@@ -7,14 +9,21 @@ namespace AspNetCoreMvcExample.Services
     public class PokerCardsService : ICardsService<CardModel>
     {
         private const int NumberOfDealtCards = 5;
-        private readonly string[] _availableSuits = {"S", "H", "D", "C"};
-        private readonly string[] _availableValues = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         private readonly Random _random = new Random();
         public IEnumerable<CardModel> DealtCards { get; private set; }
 
         public void DealCards()
         {
             DealtCards = GetRandomCards(NumberOfDealtCards);
+        }
+
+        public void SetCards(IEnumerable<CardModel> cards)
+        {
+            var cardModels = cards as CardModel[] ?? cards.ToArray();
+            if (!cardModels.Count().Equals(NumberOfDealtCards))
+                throw new ArgumentOutOfRangeException($"cards array must contain {NumberOfDealtCards} members");
+
+            DealtCards = cardModels;
         }
 
         private IEnumerable<CardModel> GetRandomCards(int numberOfCards)
@@ -37,8 +46,8 @@ namespace AspNetCoreMvcExample.Services
         {
             return new CardModel()
             {
-                Suit = _availableSuits[_random.Next(0, _availableSuits.Length)],
-                Value = _availableValues[_random.Next(0, _availableValues.Length)]
+                Suit = Suit.Club.GetRandomEnum(),
+                Face = Face.Ace.GetRandomEnum()
             };
         }
 

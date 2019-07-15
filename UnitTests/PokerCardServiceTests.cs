@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using AspNetCoreMvcExample.Models;
 using AspNetCoreMvcExample.Services;
@@ -25,6 +26,22 @@ namespace AspNetCoreMvcExample.UnitTests
         }
 
         [Test]
+        public void FourCardsThrowsArgumentOutOfRangeException()
+        {
+            // act
+            var cardsArray = new CardModel[4]
+            {
+                new CardModel(),
+                new CardModel(),
+                new CardModel(),
+                new CardModel(),
+            };
+
+            // assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => _pokerCardsService.SetCards(cardsArray));
+        }
+
+        [Test]
         public void DealtCardsDoNotContainDuplicates()
         {
             // act
@@ -35,5 +52,6 @@ namespace AspNetCoreMvcExample.UnitTests
             // assert
             Assert.That(!duplicateCards.Any());
         }
+
     }
 }
