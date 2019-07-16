@@ -3,8 +3,8 @@ using AspNetCoreMvcExample.Models;
 
 namespace AspNetCoreMvcExample.Services
 {
-    public interface ICardsRankService<in T>
+    public interface ICardsRankingService<in T, out TT>
     {
-        Rank GetRank(IEnumerable<T> cards);
+        TT GetRank(IEnumerable<T> cards);
     }
 }

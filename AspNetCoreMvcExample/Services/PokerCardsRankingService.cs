@@ -6,7 +6,7 @@ using AspNetCoreMvcExample.Models;
 
 namespace AspNetCoreMvcExample.Services
 {
-    public class PokerCardsRankService : ICardsRankService<CardModel>
+    public class PokerCardsRankingService : ICardsRankingService<CardModel, Rank>
     {
         public Rank GetRank(IEnumerable<CardModel> cards)
         {
