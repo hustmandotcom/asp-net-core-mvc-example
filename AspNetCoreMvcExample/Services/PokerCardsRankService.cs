@@ -59,16 +59,7 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsFourOfAKind(IEnumerable<CardModel> cards)
         {
-            var query = NormalizeAces(cards).GroupBy(
-                card => card.Face,
-                card => card.Face,
-                (face, enumerable) => new
-                {
-                    Key = face,
-                    Count = enumerable.Count()
-                });
-
-            foreach (var result in query)
+            foreach (var result in GetFaces(cards))
             {
                 if (result.Count == 4)
                     return true;
@@ -79,25 +70,17 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsFullHouse(IEnumerable<CardModel> cards)
         {
-            var query = NormalizeAces(cards).GroupBy(
-                card => card.Face,
-                card => card.Face,
-                (face, enumerable) => new
-                {
-                    Key = face,
-                    Count = enumerable.Count()
-                });
-
             var threeOfAKind = 0;
             var twoOfAKind = 0;
 
-            foreach (var result in query)
+            foreach (var result in GetFaces(cards))
             {
                 if (result.Count == 3)
                     threeOfAKind++;
                 if (result.Count == 2)
                     twoOfAKind++;
             }
+
             return threeOfAKind == 1 && twoOfAKind == 1;
         }
 
@@ -117,6 +100,7 @@ namespace AspNetCoreMvcExample.Services
                 if (result.Count == 5)
                     return true;
             }
+
             return false;
         }
 
@@ -127,7 +111,7 @@ namespace AspNetCoreMvcExample.Services
             var previousFaceValue = -1;
             foreach (var face in faces)
             {
-                var faceValue = (int)face;
+                var faceValue = (int) face;
                 if (previousFaceValue < 0)
                     previousFaceValue = faceValue;
                 else
@@ -138,21 +122,13 @@ namespace AspNetCoreMvcExample.Services
                         return false;
                 }
             }
+
             return true;
         }
 
         private bool IsThreeOfAKind(IEnumerable<CardModel> cards)
         {
-            var query = NormalizeAces(cards).GroupBy(
-                card => card.Face,
-                card => card.Face,
-                (face, enumerable) => new
-                {
-                    Key = face,
-                    Count = enumerable.Count()
-                });
-
-            foreach (var result in query)
+            foreach (var result in GetFaces(cards))
             {
                 if (result.Count == 3)
                     return true;
@@ -163,17 +139,9 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsTwoPair(IEnumerable<CardModel> cards)
         {
-            var query = NormalizeAces(cards).GroupBy(
-                card => card.Face,
-                card => card.Face,
-                (face, enumerable) => new
-                {
-                    Key = face,
-                    Count = enumerable.Count()
-                });
             var pairsCount = 0;
 
-            foreach (var result in query)
+            foreach (var result in GetFaces(cards))
             {
                 if (result.Count == 2)
                     pairsCount++;
@@ -184,16 +152,7 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsOnePair(IEnumerable<CardModel> cards)
         {
-            var query = NormalizeAces(cards).GroupBy(
-                card => card.Face,
-                card => card.Face,
-                (face, enumerable) => new
-                {
-                    Key = face,
-                    Count = enumerable.Count()
-                });
-
-            foreach (var result in query)
+            foreach (var result in GetFaces(cards))
             {
                 if (result.Count == 2)
                     return true;
@@ -220,5 +179,16 @@ namespace AspNetCoreMvcExample.Services
             return normalizedCards;
         }
 
+        private dynamic GetFaces(IEnumerable<CardModel> cards)
+        {
+            return NormalizeAces(cards).GroupBy(
+                card => card.Face,
+                card => card.Face,
+                (face, enumerable) => new
+                {
+                    Key = face,
+                    Count = enumerable.Count()
+                });
+        }
     }
 }
