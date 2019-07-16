@@ -47,7 +47,7 @@ namespace AspNetCoreMvcExample.Services
             return new CardModel()
             {
                 Suit = Suit.Club.GetRandomEnum(),
-                Face = Face.Ace.GetRandomEnum()
+                Face = Face.Six.GetRandomEnum()
             };
         }
 

@@ -24,7 +24,7 @@ namespace AspNetCoreMvcExample.Services
                 rank = Rank.THREE_OF_A_KIND;
 
             if (IsStraight(cardModels))
-                rank = Rank.THREE_OF_A_KIND;
+                rank = Rank.STRAIGHT;
 
             if (IsFlush(cardModels))
                 rank = Rank.FLUSH;
@@ -46,36 +46,118 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsRoyalFlush(IEnumerable<CardModel> cards)
         {
-            return false;
+            var cardModels = cards as CardModel[] ?? cards.ToArray();
+            var isStraightFlush = IsStraightFlush(cardModels);
+            return isStraightFlush && cardModels.Select(c => c.Face).Contains(Face.AceHigh);
         }
 
         private bool IsStraightFlush(IEnumerable<CardModel> cards)
         {
-            return false;
+            var cardModels = cards as CardModel[] ?? cards.ToArray();
+            return IsStraight(cardModels) && IsFlush(cardModels);
         }
 
         private bool IsFourOfAKind(IEnumerable<CardModel> cards)
         {
+            var query = cards.GroupBy(
+                card => card.Face,
+                card => card.Face,
+                (face, enumerable) => new
+                {
+                    Key = face,
+                    Count = enumerable.Count()
+                });
+
+            foreach (var result in query)
+            {
+                if (result.Count == 4)
+                    return true;
+            }
+
             return false;
         }
 
         private bool IsFullHouse(IEnumerable<CardModel> cards)
         {
-            return false;
+            var query = cards.GroupBy(
+                card => card.Face,
+                card => card.Face,
+                (face, enumerable) => new
+                {
+                    Key = face,
+                    Count = enumerable.Count()
+                });
+
+            var threeOfAKind = 0;
+            var twoOfAKind = 0;
+
+            foreach (var result in query)
+            {
+                if (result.Count == 3)
+                    threeOfAKind++;
+                if (result.Count == 2)
+                    twoOfAKind++;
+            }
+            return threeOfAKind == 1 && twoOfAKind == 1;
         }
 
         private bool IsFlush(IEnumerable<CardModel> cards)
         {
+            var query = cards.GroupBy(
+                card => card.Suit,
+                card => card.Suit,
+                (suit, enumerable) => new
+                {
+                    Key = suit,
+                    Count = enumerable.Count()
+                });
+
+            foreach (var result in query)
+            {
+                if (result.Count == 5)
+                    return true;
+            }
             return false;
         }
 
         private bool IsStraight(IEnumerable<CardModel> cards)
         {
-            return false;
+            var faces = cards.Select(c => c.Face).ToArray();
+            Array.Sort(faces);
+            var previousFaceValue = -1;
+            foreach (var face in faces)
+            {
+                var faceValue = (int)face;
+                if (previousFaceValue < 0)
+                    previousFaceValue = faceValue;
+                else
+                {
+                    if (faceValue == previousFaceValue + 1)
+                        previousFaceValue = faceValue;
+                    else
+                        return false;
+                }
+            }
+            return true;
         }
 
         private bool IsThreeOfAKind(IEnumerable<CardModel> cards)
         {
+            var query = cards.GroupBy(
+                card => card.Face,
+                card => card.Face,
+                (face, enumerable) => new
+                {
+                    Key = face,
+                    Count = enumerable.Count()
+                });
+
+            foreach (var result in query)
+            {
+                if (result.Count == 3)
+                    return true;
+            }
+
             return false;
         }
 
@@ -120,5 +202,6 @@ namespace AspNetCoreMvcExample.Services
 
             return pairsCount == 1;
         }
+
     }
 }

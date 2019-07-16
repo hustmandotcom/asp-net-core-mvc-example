@@ -4,6 +4,7 @@ namespace AspNetCoreMvcExample.Models
 {
     public enum Face
     {
+        [Description("A")] AceLow,
         [Description("2")] Two,
         [Description("3")] Three,
         [Description("4")] Four,
@@ -16,6 +17,6 @@ namespace AspNetCoreMvcExample.Models
         [Description("J")] Jack,
         [Description("Q")] Queen,
         [Description("K")] King,
-        [Description("A")] Ace
+        [Description("A")] AceHigh
     }
 }
