@@ -1,7 +1,10 @@
-﻿namespace AspNetCoreMvcExample.Services
+﻿using System.Collections.Generic;
+using AspNetCoreMvcExample.Models;
+
+namespace AspNetCoreMvcExample.Services
 {
     public interface IRankService<in T>
     {
-        string GetRank(T cards);
+        Rank GetRank(IEnumerable<T> cards);
     }
 }
