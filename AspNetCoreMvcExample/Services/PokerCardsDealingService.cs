@@ -32,7 +32,7 @@ namespace AspNetCoreMvcExample.Services
             for (var i = 0; i < numberOfCards; i++)
             {
                 var randomCard = GetRandomCard();
-                while (dealtCards.Contains(randomCard))
+                while (DuplicateCard(dealtCards, randomCard))
                 {
                     randomCard = GetRandomCard();
                 }
@@ -40,6 +40,17 @@ namespace AspNetCoreMvcExample.Services
             }
 
             return dealtCards;
+        }
+
+        private bool DuplicateCard(List<CardModel> dealtCards, CardModel randomCard)
+        {
+            foreach (var dealtCard in dealtCards)
+            {
+                if (dealtCard.Face.Equals(randomCard.Face) && dealtCard.Suit.Equals(randomCard.Suit))
+                    return true;
+            }
+
+            return false;
         }
 
         private CardModel GetRandomCard()
