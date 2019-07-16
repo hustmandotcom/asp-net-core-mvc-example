@@ -7,11 +7,13 @@ namespace AspNetCoreMvcExample.Controllers
 {
     public class PokerHandController : Controller
     {
-        private readonly ICardDealingService<CardModel> _pokerCardDealingService;
+        private readonly ICardsDealingService<CardModel> _pokerCardsDealingService;
+        private readonly ICardsRankService<CardModel> _pokerCardsRankService;
 
-        public PokerHandController(ICardDealingService<CardModel> pokerCardDealingService)
+        public PokerHandController(ICardsDealingService<CardModel> pokerCardsDealingService, ICardsRankService<CardModel> pokerCardsRankService)
         {
-            _pokerCardDealingService = pokerCardDealingService;
+            _pokerCardsDealingService = pokerCardsDealingService;
+            _pokerCardsRankService = pokerCardsRankService;
         }
 
         public IActionResult Index()
@@ -24,8 +26,9 @@ namespace AspNetCoreMvcExample.Controllers
         public IActionResult DealCards()
         {
             var model = new PokerHandModel();
-            _pokerCardDealingService.DealCards();
-            model.Cards = _pokerCardDealingService.DealtCards;
+            _pokerCardsDealingService.DealCards();
+            model.Cards = _pokerCardsDealingService.DealtCards;
+            model.Rank = _pokerCardsRankService.GetRank(model.Cards);
             return View(nameof(Index), model);
         }
     }

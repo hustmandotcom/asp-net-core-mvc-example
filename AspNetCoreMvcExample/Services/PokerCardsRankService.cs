@@ -6,7 +6,7 @@ using AspNetCoreMvcExample.Models;
 
 namespace AspNetCoreMvcExample.Services
 {
-    public class PokerCardsRankService : IRankService<CardModel>
+    public class PokerCardsRankService : ICardsRankService<CardModel>
     {
         public Rank GetRank(IEnumerable<CardModel> cards)
         {
@@ -59,7 +59,7 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsFourOfAKind(IEnumerable<CardModel> cards)
         {
-            var query = cards.GroupBy(
+            var query = NormalizeAces(cards).GroupBy(
                 card => card.Face,
                 card => card.Face,
                 (face, enumerable) => new
@@ -79,7 +79,7 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsFullHouse(IEnumerable<CardModel> cards)
         {
-            var query = cards.GroupBy(
+            var query = NormalizeAces(cards).GroupBy(
                 card => card.Face,
                 card => card.Face,
                 (face, enumerable) => new
@@ -143,7 +143,7 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsThreeOfAKind(IEnumerable<CardModel> cards)
         {
-            var query = cards.GroupBy(
+            var query = NormalizeAces(cards).GroupBy(
                 card => card.Face,
                 card => card.Face,
                 (face, enumerable) => new
@@ -163,7 +163,7 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsTwoPair(IEnumerable<CardModel> cards)
         {
-            var query = cards.GroupBy(
+            var query = NormalizeAces(cards).GroupBy(
                 card => card.Face,
                 card => card.Face,
                 (face, enumerable) => new
@@ -184,7 +184,7 @@ namespace AspNetCoreMvcExample.Services
 
         private bool IsOnePair(IEnumerable<CardModel> cards)
         {
-            var query = cards.GroupBy(
+            var query = NormalizeAces(cards).GroupBy(
                 card => card.Face,
                 card => card.Face,
                 (face, enumerable) => new
@@ -192,15 +192,32 @@ namespace AspNetCoreMvcExample.Services
                     Key = face,
                     Count = enumerable.Count()
                 });
-            var pairsCount = 0;
 
             foreach (var result in query)
             {
                 if (result.Count == 2)
-                    pairsCount++;
+                    return true;
             }
 
-            return pairsCount == 1;
+            return false;
+        }
+
+        private IEnumerable<CardModel> NormalizeAces(IEnumerable<CardModel> cards)
+        {
+            var normalizedCards = new List<CardModel>();
+            foreach (var card in cards)
+            {
+                var newCard = new CardModel();
+                newCard.Face = card.Face;
+                newCard.Suit = card.Suit;
+
+                if (newCard.Face.Equals(Face.AceHigh) || newCard.Face.Equals(Face.AceLow))
+                    newCard.Face = Face.AceHigh;
+
+                normalizedCards.Add(newCard);
+            }
+
+            return normalizedCards;
         }
 
     }

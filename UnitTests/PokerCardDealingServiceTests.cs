@@ -8,21 +8,21 @@ namespace AspNetCoreMvcExample.UnitTests
 {
     public class PokerCardDealingServiceTests
     {
-        private ICardDealingService<CardModel> _pokerCardDealingService;
+        private ICardsDealingService<CardModel> _pokerCardsDealingService;
         [SetUp]
         public void Setup()
         {
-            _pokerCardDealingService = new PokerCardDealingService();
+            _pokerCardsDealingService = new PokerCardsDealingService();
         }
 
         [Test]
         public void DealingCardsGetsFiveCards()
         {
             // act
-            _pokerCardDealingService.DealCards();
+            _pokerCardsDealingService.DealCards();
 
             // assert
-            Assert.That(_pokerCardDealingService.DealtCards.Count().Equals(5));
+            Assert.That(_pokerCardsDealingService.DealtCards.Count().Equals(5));
         }
 
         [Test]
@@ -38,15 +38,15 @@ namespace AspNetCoreMvcExample.UnitTests
             };
 
             // assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => _pokerCardDealingService.SetCards(cardsArray));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _pokerCardsDealingService.SetCards(cardsArray));
         }
 
         [Test]
         public void DealtCardsDoNotContainDuplicates()
         {
             // act
-            _pokerCardDealingService.DealCards();
-            var duplicateCards = _pokerCardDealingService.DealtCards.GroupBy(card => card).Where(cards => cards.Count() > 1)
+            _pokerCardsDealingService.DealCards();
+            var duplicateCards = _pokerCardsDealingService.DealtCards.GroupBy(card => card).Where(cards => cards.Count() > 1)
                 .Select(card => card.Key);
 
             // assert

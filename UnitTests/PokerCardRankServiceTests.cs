@@ -10,13 +10,13 @@ namespace AspNetCoreMvcExample.UnitTests
     class PokerCardRankServiceTests
     {
         private PokerCardsRankService _pokerCardRankService;
-        private PokerCardDealingService _pokerCardDealingService;
+        private PokerCardsDealingService _pokerCardsDealingService;
 
         [SetUp]
         public void Setup()
         {
             _pokerCardRankService = new PokerCardsRankService();
-            _pokerCardDealingService = new PokerCardDealingService();
+            _pokerCardsDealingService = new PokerCardsDealingService();
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.Three, Suit = Suit.Club});
             cards.Add(new CardModel() {Face = Face.Seven, Suit = Suit.Club});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -38,6 +38,27 @@ namespace AspNetCoreMvcExample.UnitTests
             // assert
             Assert.That(rank.Equals(Rank.HIGH_CARD));
         }
+
+        [Test]
+        public void AceLowAceHighSetCardsAreRankedCorrectly()
+        {
+            // arrange
+            var cards = new List<CardModel>();
+            cards.Add(new CardModel() {Face = Face.AceHigh, Suit = Suit.Club});
+            cards.Add(new CardModel() {Face = Face.AceLow, Suit = Suit.Heart});
+            cards.Add(new CardModel() {Face = Face.Six, Suit = Suit.Spade});
+            cards.Add(new CardModel() {Face = Face.Three, Suit = Suit.Club});
+            cards.Add(new CardModel() {Face = Face.Seven, Suit = Suit.Club});
+
+            _pokerCardsDealingService.SetCards(cards);
+
+            // act
+            var rank = _pokerCardRankService.GetRank(cards);
+
+            // assert
+            Assert.That(rank.Equals(Rank.ONE_PAIR));
+        }
+
 
         [Test]
         public void OnePairSetCardsAreRankedCorrectly()
@@ -50,7 +71,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.Three, Suit = Suit.Club});
             cards.Add(new CardModel() {Face = Face.Seven, Suit = Suit.Club});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -70,7 +91,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.Six, Suit = Suit.Club});
             cards.Add(new CardModel() {Face = Face.Seven, Suit = Suit.Club});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -90,7 +111,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.Six, Suit = Suit.Club});
             cards.Add(new CardModel() {Face = Face.Seven, Suit = Suit.Club});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -110,7 +131,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.Four, Suit = Suit.Club});
             cards.Add(new CardModel() {Face = Face.Five, Suit = Suit.Club});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -130,7 +151,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.King, Suit = Suit.Club});
             cards.Add(new CardModel() {Face = Face.AceHigh, Suit = Suit.Club});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -150,7 +171,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.King, Suit = Suit.Club});
             cards.Add(new CardModel() {Face = Face.AceHigh, Suit = Suit.Club});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -170,7 +191,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.AceHigh, Suit = Suit.Heart});
             cards.Add(new CardModel() {Face = Face.AceHigh, Suit = Suit.Club});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -191,7 +212,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.Ten, Suit = Suit.Heart});
             cards.Add(new CardModel() {Face = Face.AceHigh, Suit = Suit.Club});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -212,7 +233,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.Queen, Suit = Suit.Diamond});
             cards.Add(new CardModel() {Face = Face.King, Suit = Suit.Diamond});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
@@ -232,7 +253,7 @@ namespace AspNetCoreMvcExample.UnitTests
             cards.Add(new CardModel() {Face = Face.King, Suit = Suit.Diamond});
             cards.Add(new CardModel() {Face = Face.AceHigh, Suit = Suit.Diamond});
 
-            _pokerCardDealingService.SetCards(cards);
+            _pokerCardsDealingService.SetCards(cards);
 
             // act
             var rank = _pokerCardRankService.GetRank(cards);
