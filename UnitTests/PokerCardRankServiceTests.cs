@@ -36,7 +36,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.HIGH_CARD));
+            Assert.That(rank.Equals(Rank.HighCard));
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.ONE_PAIR));
+            Assert.That(rank.Equals(Rank.OnePair));
         }
 
 
@@ -77,7 +77,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.ONE_PAIR));
+            Assert.That(rank.Equals(Rank.OnePair));
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.TWO_PAIR));
+            Assert.That(rank.Equals(Rank.TwoPair));
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.THREE_OF_A_KIND));
+            Assert.That(rank.Equals(Rank.ThreeOfAKind));
         }
 
         [Test]
@@ -137,7 +137,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.STRAIGHT));
+            Assert.That(rank.Equals(Rank.Straight));
         }
 
         [Test]
@@ -157,7 +157,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.STRAIGHT));
+            Assert.That(rank.Equals(Rank.Straight));
         }
 
         [Test]
@@ -177,7 +177,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.FLUSH));
+            Assert.That(rank.Equals(Rank.Flush));
         }
 
         [Test]
@@ -197,7 +197,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.FULL_HOUSE));
+            Assert.That(rank.Equals(Rank.FullHouse));
         }
 
 
@@ -218,7 +218,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.FOUR_OF_A_KIND));
+            Assert.That(rank.Equals(Rank.FourOfAKind));
         }
 
 
@@ -239,7 +239,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.STRAIGHT_FLUSH));
+            Assert.That(rank.Equals(Rank.StraightFlush));
         }
 
         [Test]
@@ -259,7 +259,7 @@ namespace AspNetCoreMvcExample.UnitTests
             var rank = _pokerCardRankService.GetRank(cards);
 
             // assert
-            Assert.That(rank.Equals(Rank.ROYAL_FLUSH));
+            Assert.That(rank.Equals(Rank.RoyalFlush));
         }
     }
 }

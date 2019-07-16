@@ -10,36 +10,36 @@ namespace AspNetCoreMvcExample.Services
     {
         public Rank GetRank(IEnumerable<CardModel> cards)
         {
-            var rank = Rank.HIGH_CARD;
+            var rank = Rank.HighCard;
 
             var cardModels = cards as CardModel[] ?? cards.ToArray();
 
             if (IsOnePair(cardModels))
-                rank = Rank.ONE_PAIR;
+                rank = Rank.OnePair;
 
             if (IsTwoPair(cardModels))
-                rank = Rank.TWO_PAIR;
+                rank = Rank.TwoPair;
 
             if (IsThreeOfAKind(cardModels))
-                rank = Rank.THREE_OF_A_KIND;
+                rank = Rank.ThreeOfAKind;
 
             if (IsStraight(cardModels))
-                rank = Rank.STRAIGHT;
+                rank = Rank.Straight;
 
             if (IsFlush(cardModels))
-                rank = Rank.FLUSH;
+                rank = Rank.Flush;
 
             if (IsFullHouse(cardModels))
-                rank = Rank.FULL_HOUSE;
+                rank = Rank.FullHouse;
 
             if (IsFourOfAKind(cardModels))
-                rank = Rank.FOUR_OF_A_KIND;
+                rank = Rank.FourOfAKind;
 
             if (IsStraightFlush(cardModels))
-                rank = Rank.STRAIGHT_FLUSH;
+                rank = Rank.StraightFlush;
 
             if (IsRoyalFlush(cardModels))
-                rank = Rank.ROYAL_FLUSH;
+                rank = Rank.RoyalFlush;
 
             return rank;
         }
