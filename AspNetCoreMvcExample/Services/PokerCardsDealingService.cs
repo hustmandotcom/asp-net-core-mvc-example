@@ -36,6 +36,7 @@ namespace AspNetCoreMvcExample.Services
                 {
                     randomCard = GetRandomCard();
                 }
+
                 dealtCards.Add(randomCard);
             }
 
@@ -46,7 +47,8 @@ namespace AspNetCoreMvcExample.Services
         {
             foreach (var dealtCard in dealtCards)
             {
-                if (dealtCard.Face.Equals(randomCard.Face) && dealtCard.Suit.Equals(randomCard.Suit))
+                var normalizedCard = NormalizeAce(randomCard);
+                if (dealtCard.Face.Equals(normalizedCard.Face) && dealtCard.Suit.Equals(normalizedCard.Suit))
                     return true;
             }
 
@@ -62,5 +64,16 @@ namespace AspNetCoreMvcExample.Services
             };
         }
 
+        private CardModel NormalizeAce(CardModel card)
+        {
+            var newCard = new CardModel();
+            newCard.Face = card.Face;
+            newCard.Suit = card.Suit;
+
+            if (newCard.Face.Equals(Face.AceHigh) || newCard.Face.Equals(Face.AceLow))
+                newCard.Face = Face.AceHigh;
+
+            return newCard;
+        }
     }
 }
